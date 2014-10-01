@@ -1,0 +1,42 @@
+﻿@model IEnumerable<KeyRequest.ViewModels.RequestReport>
+
+@{
+    ViewBag.Title = "Key Requests";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table>
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Location
+        </th>
+        <th>
+            Tag
+        </th>
+        <th>
+            Sets
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tag)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sets)
+        </td>
+    </tr>
+}
+
+</table>

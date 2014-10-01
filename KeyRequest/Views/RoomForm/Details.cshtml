@@ -1,0 +1,48 @@
+﻿@model KeyRequest.ViewModels.RoomForm
+
+@{
+    ViewBag.Title = "Room Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    @Html.HiddenFor(model => model.RoomFormID)
+
+    <div class="display-label">@Html.LabelFor(model => model.Description)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Location)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.Available)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Available)
+    </div>
+    <div class="display-field">
+        <table>
+            <thead>
+                <tr>
+                    <th>Keys</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Keys)
+                { 
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Tag)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.RoomFormID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model KeyRequest.ViewModels.RoomForm
+
+@{
+    ViewBag.Title = "Delete Room";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.ErrorMessage</h3>
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    @Html.HiddenFor(model => model.RoomFormID)
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">Location</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Location)
+    </div>
+
+    <div class="display-label">Available</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Available)
+    </div>
+    <div class="display-field">
+        <table>
+            <thead>
+                <tr>
+                    <th>Keys</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Keys)
+                { 
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Tag)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

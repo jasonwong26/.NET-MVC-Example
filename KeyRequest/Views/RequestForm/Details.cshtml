@@ -1,0 +1,56 @@
+﻿@model KeyRequest.ViewModels.RequestForm
+
+@{
+    ViewBag.Title = "Request Details";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<fieldset>
+    <legend>Request Form</legend>
+    @Html.HiddenFor(model => model.RequestFormID)
+
+    <div class="display-label">@Html.LabelFor(model => model.EmployeeNo)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmployeeNo)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.LastName)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.FirstName)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">@Html.LabelFor(model => model.RequestDate)</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.RequestDate)
+    </div>
+    <div class="display-label">@Html.LabelFor(model => model.Sets)</div>
+    <div class="display-field">
+        <table>
+            <thead>
+                <tr>
+                    <th>Room</th>
+                    <th>Key Sets</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Sets)
+                { 
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.RoomDescription)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Sets)</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.RequestFormID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

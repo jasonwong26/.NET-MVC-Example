@@ -1,0 +1,69 @@
+﻿@model KeyRequest.ViewModels.RoomForm
+
+@{
+    ViewBag.Title = "Create Room";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Location)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Location)
+            @Html.ValidationMessageFor(model => model.Location)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Available)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Available)
+            @Html.ValidationMessageFor(model => model.Available)
+        </div>
+        <div class="editor-field">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Keys</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Keys.Count; i++)
+                    { 
+                    <tr>
+                        @Html.HiddenFor(x => Model.Keys[i].RoomFormID)
+                        @Html.HiddenFor(x => Model.Keys[i].KeyFormID)
+                        <td>@Html.EditorFor(x => Model.Keys[i].Tag)
+                            @Html.ValidationMessageFor(modelItem => Model.Keys[i].Tag)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

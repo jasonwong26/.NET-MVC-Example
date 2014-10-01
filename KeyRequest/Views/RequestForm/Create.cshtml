@@ -1,0 +1,82 @@
+﻿@model KeyRequest.ViewModels.RequestForm
+
+@{
+    ViewBag.Title = "Request Form";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmployeeNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmployeeNo)
+            @Html.ValidationMessageFor(model => model.EmployeeNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.RequestDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.RequestDate)
+            @Html.ValidationMessageFor(model => model.RequestDate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Sets)
+        </div>
+        <div class="editor-field">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th>Key Sets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Sets.Count; i++)
+                    { 
+                    <tr>
+                        @Html.HiddenFor(x => Model.Sets[i].RequestFormID)
+                        <td>@Html.DropDownListFor(x => Model.Sets[i].RoomID, Model.Sets[i].RoomList, String.Empty)
+                            @Html.ValidationMessageFor(modelItem => Model.Sets[i].RoomID)
+                        </td>
+                        <td>@Html.EditorFor(modelItem => Model.Sets[i].Sets)
+                            @Html.ValidationMessageFor(modelItem => Model.Sets[i].Sets)
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
