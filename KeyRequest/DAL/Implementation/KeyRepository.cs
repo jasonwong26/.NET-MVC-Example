@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using KeyRequest.Models;
 
 namespace KeyRequest.DAL.Implementation
@@ -35,7 +36,7 @@ namespace KeyRequest.DAL.Implementation
 
         public void Update(Key key)
         {
-            context.Entry(key).State = System.Data.EntityState.Modified;
+            context.Entry(key).State = EntityState.Modified;
         }
 
         public void Delete(Key key)

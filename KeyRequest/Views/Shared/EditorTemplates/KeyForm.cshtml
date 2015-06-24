@@ -1,0 +1,14 @@
+﻿@model KeyRequest.ViewModels.KeyForm
+
+<tr>
+    @Html.HiddenFor(x => Model.RoomFormID)
+    <td>
+        @Html.TextBoxFor(x => Model.Tag, new { @class = "form-control", placeholder = "Key Label" })
+        @Html.ValidationMessageFor(modelItem => Model.Tag, "", new { @class = "text-danger" })
+    </td>
+    <td>
+        <button type="button" class="btn btn-danger disabled" aria-label="Remove">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        </button>
+    </td>
+</tr>

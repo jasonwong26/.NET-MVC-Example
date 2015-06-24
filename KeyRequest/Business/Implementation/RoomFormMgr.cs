@@ -10,7 +10,7 @@ namespace KeyRequest.Business.Implementation
 {
     public class RoomFormMgr : BaseFormMgr, IRoomFormMgr
     {
-        private const int MAXKEYS = 5;
+        private const int MINKEYS = 1;
 
         public RoomFormMgr(IUnitOfWork unitofwork)
         {
@@ -97,7 +97,7 @@ namespace KeyRequest.Business.Implementation
         #region Helper Methods
         private void AppendPlaceHolderKeys(RoomForm roomform)
         {
-            while (roomform.Keys.Count < MAXKEYS)
+            while (roomform.Keys.Count < MINKEYS)
             {
                 roomform.Keys.Add(new KeyForm
                 {

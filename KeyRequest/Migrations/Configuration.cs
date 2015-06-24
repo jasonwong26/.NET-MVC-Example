@@ -11,7 +11,8 @@ namespace KeyRequest.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
+            ContextKey = "KeyRequest.DAL.KeyRequestContext";
         }
 
         protected override void Seed(KeyRequest.DAL.KeyRequestContext context)

@@ -36,7 +36,7 @@ namespace KeyRequest.DAL.Implementation
 
         public void Update(Request request)
         {
-            context.Entry(request).State = System.Data.EntityState.Modified;
+            context.Entry(request).State = EntityState.Modified;
         }
 
         public void Delete(int requestID)

@@ -12,7 +12,7 @@ namespace KeyRequest.Business.Implementation
 {
     public class RequestFormMgr : BaseFormMgr, IRequestFormMgr
     {
-        private const int MAXROOMS = 5;
+        private const int MINROOMS = 1;
 
         public RequestFormMgr(IUnitOfWork unitofwork)
         {
@@ -98,7 +98,7 @@ namespace KeyRequest.Business.Implementation
         #region Helper Methods
         private void AppendPlaceHolderKeys(RequestForm requestForm)
         {
-            while (requestForm.Sets.Count < MAXROOMS)
+            while (requestForm.Sets.Count < MINROOMS)
             {
                 requestForm.Sets.Add(new RequestSetForm
                 {

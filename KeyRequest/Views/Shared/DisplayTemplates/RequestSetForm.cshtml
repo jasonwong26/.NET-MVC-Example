@@ -1,0 +1,15 @@
+﻿@model KeyRequest.ViewModels.RequestSetForm
+
+<tr>
+    @Html.HiddenFor(x => Model.RequestFormID)
+    <td>
+        <p class="form-control-static">
+            @Html.DisplayFor(x => Model.RoomDescription)
+        </p>
+        </td>
+    <td>
+        <p class="form-control-static">
+            @Html.DisplayFor(x => Model.Sets)
+        </p>
+    </td>
+</tr>

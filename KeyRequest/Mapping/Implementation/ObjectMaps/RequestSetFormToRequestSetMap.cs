@@ -22,7 +22,7 @@ namespace KeyRequest.Mapping.Implementation
             {
                 RequestID = input.RequestFormID,
                 RoomID = input.RoomID.GetValueOrDefault(0),
-                Sets = input.Sets
+                Sets = input.Sets.HasValue ? (int)input.Sets : 0,
             };
 
             return result;

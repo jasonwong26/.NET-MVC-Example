@@ -20,7 +20,7 @@ namespace KeyRequest.Controllers
         }
 
         //
-        // GET: /RequestForm/Details/5
+        // GET: /RequestForm/Details/
         public ActionResult Details(int id)
         {
             RequestForm form = formMgr.Get(id);
@@ -68,7 +68,7 @@ namespace KeyRequest.Controllers
         }
         
         //
-        // GET: /RequestForm/Edit/5
+        // GET: /RequestForm/Edit/
         public ActionResult Edit(int id)
         {
             RequestForm form = formMgr.Get(id, true);
@@ -82,7 +82,7 @@ namespace KeyRequest.Controllers
         }
 
         //
-        // POST: /RequestForm/Edit/5
+        // POST: /RequestForm/Edit/
         [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Edit(

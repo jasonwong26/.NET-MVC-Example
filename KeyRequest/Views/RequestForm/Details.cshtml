@@ -6,51 +6,71 @@
 
 <h2>@ViewBag.Title</h2>
 
-<fieldset>
-    <legend>Request Form</legend>
-    @Html.HiddenFor(model => model.RequestFormID)
-
-    <div class="display-label">@Html.LabelFor(model => model.EmployeeNo)</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.EmployeeNo)
+<fieldset class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmployeeNo, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">
+                @Html.DisplayFor(model => model.EmployeeNo)
+            </p>
+        </div>
     </div>
 
-    <div class="display-label">@Html.LabelFor(model => model.LastName)</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
+    <div class="form-group">
+        @Html.LabelFor(model => model.FirstName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">
+                @Html.DisplayFor(model => model.FirstName)
+            </p>
+        </div>
     </div>
 
-    <div class="display-label">@Html.LabelFor(model => model.FirstName)</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
+    <div class="form-group">
+        @Html.LabelFor(model => model.LastName, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">
+                @Html.DisplayFor(model => model.LastName)
+            </p>
+        </div>
     </div>
 
-    <div class="display-label">@Html.LabelFor(model => model.RequestDate)</div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.RequestDate)
+    <div class="form-group">
+        @Html.LabelFor(model => model.RequestDate, new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            <p class="form-control-static">
+                @Html.DisplayFor(model => model.RequestDate)
+            </p>
+        </div>
     </div>
-    <div class="display-label">@Html.LabelFor(model => model.Sets)</div>
-    <div class="display-field">
-        <table>
-            <thead>
-                <tr>
-                    <th>Room</th>
-                    <th>Key Sets</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model.Sets)
-                { 
-                <tr>
-                    <td>@Html.DisplayFor(modelItem => item.RoomDescription)</td>
-                    <td>@Html.DisplayFor(modelItem => item.Sets)</td>
-                </tr>
-                }
-            </tbody>
-        </table>
+
+    <div class="panel panel-info">
+        <div class="panel-heading">Requested Keys For:</div>
+        <div class="table-responsive">
+            <table id="requestsets" class="table">
+                <thead>
+                    <tr>
+                        <th>Room</th>
+                        <th>Number of Sets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (int i = 0; i < Model.Sets.Count; i++)
+                    {
+                        @Html.DisplayFor(x => Model.Sets[i])
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <a href="@Url.Action("Edit", new { id = Model.RequestFormID })" class="btn btn-default pull-right" role="button" aria-label="Edit">
+                Edit
+            </a>
+        </div>
     </div>
 </fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.RequestFormID }) |
+
+<div>
     @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

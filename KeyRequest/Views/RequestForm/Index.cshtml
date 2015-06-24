@@ -6,46 +6,48 @@
 
 <h2>@ViewBag.Title</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            EmployeeNo
-        </th>
-        <th>
-            LastName
-        </th>
-        <th>
-            FirstName
-        </th>
-        <th>
-            RequestDate
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmployeeNo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RequestDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RequestFormID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.RequestFormID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.RequestFormID })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="panel panel-info">
+    <div class="panel-heading"></div>
+    <div class="table-responsive">
+        <table id="requestsets" class="table">
+            <thead>
+                <tr>
+                    <th>EmployeeNo</th>
+                    <th>LastName</th>
+                    <th>FirstName</th>
+                    <th>RequestDate</th>
+                    <th></th>
+                    <th>
+                        <a href="@Url.Action("Create")" class="btn btn-success btn-xs" role="button" aria-label="Add">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.EmployeeNo)</td>
+                    <td>@Html.DisplayFor(modelItem => item.LastName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RequestDate)</td>
+                    <td>
+                        <a href="@Url.Action("Details", new { id = item.RequestFormID })" class="btn btn-default btn-xs" role="button" aria-label="View">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </a>
+                        <a href="@Url.Action("Edit", new { id = item.RequestFormID })" class="btn btn-default btn-xs" role="button" aria-label="Edit">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete", new { id = item.RequestFormID })" class="btn btn-danger btn-xs" role="button" aria-label="Delete">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

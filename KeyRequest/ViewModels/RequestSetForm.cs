@@ -14,11 +14,13 @@ namespace KeyRequest.ViewModels
     {
         public IEnumerable<SelectListItem> RoomList { get; set; }
 
+        [Required]
         public int RequestFormID { get; set; }
+        [Required]
         public int? RoomID { get; set; }
         public string RoomDescription { get; set; }
-
-        [Range(0, 9)]
-        public int Sets { get; set; }
+        [Required]
+        [Range(1, 9)]
+        public int? Sets { get; set; }
     }
 }
